@@ -1,4 +1,4 @@
-update=Di 14 Feb 2017 11:00:23 CET
+update=Di 14 Feb 2017 14:21:33 CET
 version=1
 last_client=kicad
 [cvpcb]
@@ -13,16 +13,6 @@ NetType=0
 EquName1=devcms
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=Pcbnew
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=20
 [pcbnew]
 version=1
 PageLayoutDescrFile=
@@ -77,3 +67,13 @@ LibName28=opto
 LibName29=atmel
 LibName30=contrib
 LibName31=valves
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=20
