@@ -317,17 +317,17 @@ F 3 "" H 7930 3200 60  0000 C CNN
 	1    8100 3100
 	1    0    0    -1  
 $EndComp
-Text GLabel 3450 3850 0    43   Output ~ 0
+Text GLabel 3350 3850 0    43   Output ~ 0
 P1.0_HO
-Text GLabel 3450 3950 0    43   Output ~ 0
+Text GLabel 3350 3950 0    43   Output ~ 0
 P1.1_HO
-Text GLabel 3450 4050 0    43   Output ~ 0
+Text GLabel 3350 4050 0    43   Output ~ 0
 P1.2_HO
-Text GLabel 9350 3150 2    43   Input ~ 0
+Text GLabel 9450 3350 2    43   Input ~ 0
 P1.0_HO
-Text GLabel 9350 3250 2    43   Input ~ 0
+Text GLabel 9450 3250 2    43   Input ~ 0
 P1.1_HO
-Text GLabel 9350 3350 2    43   Input ~ 0
+Text GLabel 9450 3150 2    43   Input ~ 0
 P1.2_HO
 NoConn ~ 3450 4950
 NoConn ~ 3450 5050
@@ -337,7 +337,7 @@ NoConn ~ 3450 2600
 NoConn ~ 3450 2500
 NoConn ~ 3450 2400
 NoConn ~ 3450 2300
-Text GLabel 3450 2100 0    43   Input ~ 0
+Text GLabel 3300 2100 0    43   Input ~ 0
 PinSwitch
 Text GLabel 8900 2750 2    43   Input ~ 0
 PinSwitch
@@ -437,12 +437,12 @@ $EndComp
 $Comp
 L R R1
 U 1 1 58A3207C
-P 9100 3150
-F 0 "R1" V 9100 3050 50  0000 C CNN
-F 1 "DNP" V 9100 3200 50  0000 C CNN
-F 2 "R0603F" H 9100 3150 60  0001 C CNN
-F 3 "" H 9100 3150 60  0000 C CNN
-	1    9100 3150
+P 9100 3350
+F 0 "R1" V 9100 3250 50  0000 C CNN
+F 1 "DNP" V 9100 3400 50  0000 C CNN
+F 2 "R0603F" H 9100 3350 60  0001 C CNN
+F 3 "" H 9100 3350 60  0000 C CNN
+	1    9100 3350
 	0    1    1    0   
 $EndComp
 $Comp
@@ -459,12 +459,12 @@ $EndComp
 $Comp
 L R R3
 U 1 1 58A322F2
-P 9100 3350
-F 0 "R3" V 9100 3250 50  0000 C CNN
-F 1 "DNP" V 9100 3400 50  0000 C CNN
-F 2 "R0603F" H 9100 3350 60  0001 C CNN
-F 3 "" H 9100 3350 60  0000 C CNN
-	1    9100 3350
+P 9100 3150
+F 0 "R3" V 9100 3050 50  0000 C CNN
+F 1 "DNP" V 9100 3200 50  0000 C CNN
+F 2 "R0603F" H 9100 3150 60  0001 C CNN
+F 3 "" H 9100 3150 60  0000 C CNN
+	1    9100 3150
 	0    1    1    0   
 $EndComp
 Connection ~ 2750 1500
@@ -516,4 +516,18 @@ Wire Wire Line
 NoConn ~ 3450 4650
 Wire Wire Line
 	2050 1950 2050 2000
+Wire Wire Line
+	3350 3850 3450 3850
+Wire Wire Line
+	3450 3950 3350 3950
+Wire Wire Line
+	3350 4050 3450 4050
+Wire Wire Line
+	3300 2100 3450 2100
+Wire Wire Line
+	9350 3150 9450 3150
+Wire Wire Line
+	9450 3250 9350 3250
+Wire Wire Line
+	9350 3350 9450 3350
 $EndSCHEMATC
