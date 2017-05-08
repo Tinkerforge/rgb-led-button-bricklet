@@ -3,9 +3,9 @@
   (general
     (links 38)
     (no_connects 0)
-    (area 139.124999 84.824999 164.275001 114.975001)
+    (area 138.344999 84.044999 165.055001 115.755001)
     (thickness 1.6)
-    (drawings 10)
+    (drawings 11)
     (tracks 146)
     (zones 0)
     (modules 23)
@@ -15,7 +15,7 @@
   (page A4)
   (title_block
     (title "RGB Button Bricklet")
-    (date 2017-05-05)
+    (date 2017-05-08)
     (rev 1.0)
     (company "Tinkerforge GmbH")
     (comment 1 "Licensed under CERN OHL v.1.1")
@@ -6527,6 +6527,9 @@
       (net 2 VCC))
   )
 
+  (gr_text "Copyright Tinkerforge GmbH 2017.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions" (at 254.9 153.7) (layer Cmts.User)
+    (effects (font (size 0.8 0.8) (thickness 0.15)))
+  )
   (gr_text "RGB LED Button 1.0" (at 141.7 99.9 90) (layer F.SilkS)
     (effects (font (size 0.8 0.8) (thickness 0.15)))
   )
