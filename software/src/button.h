@@ -1,7 +1,7 @@
-/* rgb-led-matrix-bricklet
+/* rgb-led-button-bricklet
  * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
- * matrix.h: WS2812B 8x8 Matrix driver
+ * button.h: RGB LED Button driver
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,12 +25,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-
 typedef struct {
 	uint8_t red;
 	uint8_t green;
 	uint8_t blue;
-	bool state;
+
+	uint8_t state;
 	uint8_t period;
 } Button;
 

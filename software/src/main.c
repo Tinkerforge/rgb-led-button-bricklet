@@ -1,5 +1,6 @@
 /* rgb-led-button-bricklet
  * Copyright (C) 2017 Bastian Nordmeyer <bastian@tinkerforge.com>
+ * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
  * main.c: Initialization for RGB LED Button Bricklet
  *
@@ -35,8 +36,8 @@ Button button;
 int main(void) {
 	uartbb_init();
 	uartbb_puts("Start RGB LED Button Bricklet\n\r");
-	button_init(&button);
 
+	button_init(&button);
 	communication_init();
 
 	while(true) {

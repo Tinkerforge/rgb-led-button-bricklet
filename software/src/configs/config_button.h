@@ -1,7 +1,7 @@
-/* rgb-led-matrix-bricklet
+/* rgb-led-button-bricklet
  * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
- * conig_matrix.c: Configuration for WS2812B 8x8 Matrix
+ * conig_button.c: Configuration for RGB LED Button
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,10 +19,23 @@
  * Boston, MA 02111-1307, USA.
  */
 
+
+#ifndef CONFIG_BUTTON_H
+#define CONFIG_BUTTON_H
+
 #include "xmc_gpio.h"
 
-#define LED_RED_PIN             	P1_1
-#define LED_BLUE_PIN             	P1_2
-#define LED_GREEN_PIN             	P1_0
+#define LED_PERIOD_VALUE        6399
 
-#define BUTTON_PIN					P0_0
+#define LED_GREEN_PIN           P1_0
+#define LED_GREEN_CCU4_SLICE    0
+
+#define LED_RED_PIN             P1_1
+#define LED_RED_CCU4_SLICE      1
+
+#define LED_BLUE_PIN            P1_2
+#define LED_BLUE_CCU4_SLICE     2
+
+#define BUTTON_PIN              P0_0
+
+#endif

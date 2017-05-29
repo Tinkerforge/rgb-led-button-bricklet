@@ -1,5 +1,6 @@
-/* rgb-button-bricklet
+/* rgb-led-button-bricklet
  * Copyright (C) Bastian Nordmeyer <bastian@tinkerforge.com>
+ * Copyright (C) Olaf Lüke <olaf@tinkerforge.com>
  *
  * button.c: RGB LED Button driver
  *
@@ -23,6 +24,7 @@
 
 #include "xmc_spi.h"
 #include "xmc_gpio.h"
+#include "xmc_ccu4.h"
 
 #include "configs/config_button.h"
 #include "configs/config.h"
@@ -31,23 +33,62 @@
 
 #include <string.h>
 
+XMC_CCU4_SLICE_t *const slice[4] = {
+	CCU40_CC40,
+	CCU40_CC41,
+	CCU40_CC42,
+	CCU40_CC43,
+};
+
+void ccu4_pwm_set_duty_cycle(const uint8_t ccu4_slice_number, const uint16_t compare_value) {
+	XMC_CCU4_SLICE_SetTimerCompareMatch(slice[ccu4_slice_number], compare_value);
+    XMC_CCU4_EnableShadowTransfer(CCU40, (XMC_CCU4_SHADOW_TRANSFER_SLICE_0 << (ccu4_slice_number*4)) |
+    		                             (XMC_CCU4_SHADOW_TRANSFER_PRESCALER_SLICE_0 << (ccu4_slice_number*4)));
+}
+
+void ccu4_pwm_init(XMC_GPIO_PORT_t *const port, const uint8_t pin, const uint8_t ccu4_slice_number, const uint16_t period_value) {
+	const XMC_CCU4_SLICE_COMPARE_CONFIG_t compare_config = {
+		.timer_mode          = XMC_CCU4_SLICE_TIMER_COUNT_MODE_EA,
+		.monoshot            = false,
+		.shadow_xfer_clear   = 0,
+		.dither_timer_period = 0,
+		.dither_duty_cycle   = 0,
+		.prescaler_mode      = XMC_CCU4_SLICE_PRESCALER_MODE_NORMAL,
+		.mcm_enable          = 0,
+		.prescaler_initval   = 0,
+		.float_limit         = 0,
+		.dither_limit        = 0,
+		.passive_level       = XMC_CCU4_SLICE_OUTPUT_PASSIVE_LEVEL_LOW,
+		.timer_concatenation = 0
+	};
+
+	const XMC_GPIO_CONFIG_t gpio_out_config	= {
+		.mode                = XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT2,
+		.input_hysteresis    = XMC_GPIO_INPUT_HYSTERESIS_STANDARD,
+		.output_level        = XMC_GPIO_OUTPUT_LEVEL_LOW,
+	};
+
+    XMC_CCU4_Init(CCU40, XMC_CCU4_SLICE_MCMS_ACTION_TRANSFER_PR_CR);
+    XMC_CCU4_StartPrescaler(CCU40);
+    XMC_CCU4_SLICE_CompareInit(slice[ccu4_slice_number], &compare_config);
+
+    // Set the period and compare register values
+    XMC_CCU4_SLICE_SetTimerPeriodMatch(slice[ccu4_slice_number], period_value);
+    XMC_CCU4_SLICE_SetTimerCompareMatch(slice[ccu4_slice_number], 0);
+
+    XMC_CCU4_EnableShadowTransfer(CCU40, (XMC_CCU4_SHADOW_TRANSFER_SLICE_0 << (ccu4_slice_number*4)) |
+    		                             (XMC_CCU4_SHADOW_TRANSFER_PRESCALER_SLICE_0 << (ccu4_slice_number*4)));
+
+    XMC_GPIO_Init(port, pin, &gpio_out_config);
+
+    XMC_CCU4_EnableClock(CCU40, ccu4_slice_number);
+    XMC_CCU4_SLICE_StartTimer(slice[ccu4_slice_number]);
+}
 
 void button_init(Button * button) {
-
-	XMC_GPIO_CONFIG_t led_red_config = {
-		.mode             = XMC_GPIO_MODE_OUTPUT_PUSH_PULL,
-		.output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW
-	};
-
-	XMC_GPIO_CONFIG_t led_green_config = {
-		.mode             = XMC_GPIO_MODE_OUTPUT_PUSH_PULL,
-		.output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW
-	};
-
-	XMC_GPIO_CONFIG_t led_blue_config = {
-		.mode             = XMC_GPIO_MODE_OUTPUT_PUSH_PULL,
-		.output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW
-	};
+	ccu4_pwm_init(LED_RED_PIN,   LED_RED_CCU4_SLICE,   LED_PERIOD_VALUE);
+	ccu4_pwm_init(LED_GREEN_PIN, LED_GREEN_CCU4_SLICE, LED_PERIOD_VALUE);
+	ccu4_pwm_init(LED_BLUE_PIN,  LED_BLUE_CCU4_SLICE,  LED_PERIOD_VALUE);
 
 	XMC_GPIO_CONFIG_t button_pin_config = {
 		.mode             = XMC_GPIO_MODE_INPUT_PULL_UP,
@@ -55,41 +96,31 @@ void button_init(Button * button) {
 		.input_hysteresis = XMC_GPIO_INPUT_HYSTERESIS_STANDARD
 	};
 
-	memset(button, 0, sizeof(Button));
-	XMC_GPIO_Init(LED_RED_PIN, &led_red_config);
-	XMC_GPIO_Init(LED_GREEN_PIN, &led_green_config);
-	XMC_GPIO_Init(LED_BLUE_PIN, &led_blue_config);
 	XMC_GPIO_Init(BUTTON_PIN, &button_pin_config);
 
 	button->period = 0;
 }
 
 
-void button_tick(Button * button) {
+void button_tick(Button *button) {
+	static uint8_t last_red = 0;
+	static uint8_t last_green = 0;
+	static uint8_t last_blue = 0;
 
-	button->period++;
+	if(last_red != button->red) {
+		ccu4_pwm_set_duty_cycle(LED_RED_CCU4_SLICE, button->red*25);
+		last_red = button->red;
+	}
 
+	if(last_green != button->green) {
+		ccu4_pwm_set_duty_cycle(LED_GREEN_CCU4_SLICE, button->green*25);
+		last_green = button->green;
+	}
 
-	if(button->red == 255)
-		XMC_GPIO_SetOutputLow(LED_RED_PIN); //led on
-	else if(button->red <= button->period)
-		XMC_GPIO_SetOutputHigh(LED_RED_PIN); //led off
-	else
-		XMC_GPIO_SetOutputLow(LED_RED_PIN); //led on
-
-	if(button->green == 255)
-		XMC_GPIO_SetOutputLow(LED_GREEN_PIN); //led on
-	else if(button->green <= button->period)
-		XMC_GPIO_SetOutputHigh(LED_GREEN_PIN);
-	else
-		XMC_GPIO_SetOutputLow(LED_GREEN_PIN);
-
-	if(button->blue == 255)
-		XMC_GPIO_SetOutputLow(LED_BLUE_PIN); //led on
-	else if(button->blue <= button->period)
-		XMC_GPIO_SetOutputHigh(LED_BLUE_PIN);
-	else
-		XMC_GPIO_SetOutputLow(LED_BLUE_PIN);
+	if(last_blue != button->blue) {
+		ccu4_pwm_set_duty_cycle(LED_BLUE_CCU4_SLICE, button->blue*25);
+		last_blue = button->blue;
+	}
 
 	button->state = XMC_GPIO_GetInput(BUTTON_PIN);
 }

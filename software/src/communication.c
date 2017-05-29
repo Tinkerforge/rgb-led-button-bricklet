@@ -1,5 +1,6 @@
 /* rgb-led-button-bricklet
  * Copyright (C) 2017 Bastian Nordmeyer <bastian@tinkerforge.com>
+ * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
  * communication.c: TFP protocol message handling
  *
@@ -27,8 +28,6 @@
 
 extern Button button;
 
-static uint8_t last_button_state;
-
 BootloaderHandleMessageResponse handle_message(const void *message, void *response) {
 	switch(tfp_get_fid_from_message(message)) {
 		case FID_SET_COLOR: return set_color(message);
@@ -40,17 +39,17 @@ BootloaderHandleMessageResponse handle_message(const void *message, void *respon
 
 
 BootloaderHandleMessageResponse set_color(const SetColor *data) {
-	button.red = data->red;
+	button.red   = data->red;
 	button.green = data->green;
-	button.blue = data->blue;
+	button.blue  = data->blue;
 	return HANDLE_MESSAGE_RESPONSE_EMPTY;
 }
 
 BootloaderHandleMessageResponse get_color(const GetColor *data, GetColor_Response *response) {
 	response->header.length = sizeof(GetColor_Response);
-	response->red = button.red;
+	response->red   = button.red;
 	response->green = button.green;
-	response->blue = button.blue;
+	response->blue  = button.blue;
 	return HANDLE_MESSAGE_RESPONSE_NEW_MESSAGE;
 }
 
@@ -64,6 +63,7 @@ BootloaderHandleMessageResponse get_button_state(const GetButtonState *data, Get
 
 
 bool handle_button_state_changed_callback(void) {
+	static uint8_t last_button_state = 0xFF; // Set to invalid value, so we always get one callback in the beginning
 	static bool is_buffered = false;
 	static ButtonStateChanged_Callback cb;
 
@@ -94,6 +94,5 @@ void communication_tick(void) {
 }
 
 void communication_init(void) {
-	last_button_state = button.state;
 	communication_callback_init();
 }
