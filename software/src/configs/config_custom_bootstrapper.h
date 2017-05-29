@@ -1,5 +1,6 @@
 /* rgb-led-button-bricklet
  * Copyright (C) 2017 Bastian Nordmeyer <bastian@tinkerforge.com>
+ * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
  * config_custom_bootstrapper.h: XMC bootstrapper configurations for 
  *                               RGB LED Button Bricklet
@@ -22,8 +23,6 @@
 
 #ifndef CONFIG_CUSTOM_BOOTSTRAPPER_H
 #define CONFIG_CUSTOM_BOOTSTRAPPER_H
-
-// TODO: CHECK ALL DEFINES!!!
 
 #define BOOTSTRAPPER_STATUS_LED_PIN P2_1
 #define BOOTSTRAPPER_USIC_CHANNEL   USIC0_CH0

@@ -1,5 +1,6 @@
 /* rgb-led-button-bricklet
  * Copyright (C) 2017 Bastian Nordmeyer <bastian@tinkerforge.com>
+ * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
  * config_custom_bootloader.h: Bootloader configurations for 
  *                             RGB LED Button Bricklet
@@ -24,8 +25,6 @@
 #define CONFIG_CUSTOM_BOOTLOADER_H
 
 #include "xmc_gpio.h"
-
-// TODO: CHECK ALL DEFINES!!!
 
 // --- Basic defines ---
 #define BOOTLOADER_DEVICE_IDENTIFIER   282

@@ -1,5 +1,6 @@
 /* rgb-led-button-bricklet
  * Copyright (C) 2017 Bastian Nordmeyer <bastian@tinkerforge.com>
+ * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
  * config.h: All configurations for RGB LED Button Bricklet
  *
@@ -23,8 +24,6 @@
 #define CONFIG_GENERAL_H
 
 #include "xmc_device.h"
-
-// TODO: CHECK ALL DEFINES!!!
 
 #define STARTUP_SYSTEM_INIT_ALREADY_DONE
 #define SYSTEM_TIMER_FREQUENCY 1000 // Use 1 kHz system timer
