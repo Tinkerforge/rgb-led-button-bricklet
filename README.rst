@@ -1,5 +1,5 @@
-RGB Button Bricklet
-===================
+RGB LED Button Bricklet
+=======================
 
 **This Bricklet is currently in development**
 
