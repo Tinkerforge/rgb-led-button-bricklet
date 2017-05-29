@@ -29,6 +29,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:rgb-button-bricklet-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -530,4 +531,41 @@ Wire Wire Line
 	9450 3250 9350 3250
 Wire Wire Line
 	9350 3350 9450 3350
+$Comp
+L LED D?
+U 1 1 592BECD7
+P 1550 4800
+F 0 "D?" H 1550 4900 50  0000 C CNN
+F 1 "blue" H 1550 4700 50  0000 C CNN
+F 2 "kicad-libraries:D0603F" H 1550 4800 50  0001 C CNN
+F 3 "" H 1550 4800 50  0000 C CNN
+	1    1550 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 592BEEDC
+P 2100 4800
+F 0 "R?" V 2180 4800 50  0000 C CNN
+F 1 "1k" V 2100 4800 50  0000 C CNN
+F 2 "kicad-libraries:R0603F" H 2100 4800 60  0001 C CNN
+F 3 "" H 2100 4800 60  0000 C CNN
+	1    2100 4800
+	0    1    1    0   
+$EndComp
+$Comp
+L VCC #PWR?
+U 1 1 592BF0C2
+P 1250 4800
+F 0 "#PWR?" H 1250 4900 30  0001 C CNN
+F 1 "VCC" H 1250 4900 30  0000 C CNN
+F 2 "" H 1250 4800 60  0001 C CNN
+F 3 "" H 1250 4800 60  0001 C CNN
+	1    1250 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 4800 1350 4800
+Wire Wire Line
+	1750 4800 1850 4800
 $EndSCHEMATC
