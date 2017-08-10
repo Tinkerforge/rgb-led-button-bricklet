@@ -3,7 +3,7 @@
   (general
     (links 41)
     (no_connects 0)
-    (area 139.124999 89.824999 164.275001 114.975001)
+    (area 138.344999 89.044999 278.84286 159.815)
     (thickness 1.6)
     (drawings 12)
     (tracks 141)
@@ -30,7 +30,7 @@
     (34 B.Paste user)
     (35 F.Paste user)
     (36 B.SilkS user)
-    (37 F.SilkS user)
+    (37 F.SilkS user hide)
     (38 B.Mask user)
     (39 F.Mask user)
     (40 Dwgs.User user)
@@ -189,7 +189,7 @@
   )
 
   (module kicad-libraries:Logo_CoMCU (layer F.Cu) (tedit 0) (tstamp 590CDC3C)
-    (at 161.2 102.6 90)
+    (at 160.65 103.55 90)
     (fp_text reference G*** (at 0 0 90) (layer F.SilkS) hide
       (effects (font (thickness 0.3)))
     )
@@ -681,7 +681,7 @@
   )
 
   (module kicad-libraries:Logo_31x31 (layer B.Cu) (tedit 4F1D86B0) (tstamp 58A3A4EB)
-    (at 159 100.8 270)
+    (at 160.1 95.7 270)
     (fp_text reference G*** (at 1.34874 -2.97434 270) (layer B.SilkS) hide
       (effects (font (size 0.29972 0.29972) (thickness 0.0762)) (justify mirror))
     )
@@ -6133,7 +6133,7 @@
   )
 
   (module kicad-libraries:WEEE_7mm (layer F.Cu) (tedit 0) (tstamp 58A3613B)
-    (at 154.4 92.5 90)
+    (at 154.55 93.1 90)
     (fp_text reference G*** (at 0 0 90) (layer F.SilkS) hide
       (effects (font (thickness 0.3)))
     )
@@ -6258,7 +6258,7 @@
   )
 
   (module kicad-libraries:CE_5mm (layer F.Cu) (tedit 0) (tstamp 58A39C72)
-    (at 148.5 92.4 90)
+    (at 148.5 93.1 90)
     (fp_text reference VAL (at 0 0 90) (layer F.SilkS) hide
       (effects (font (size 1.143 1.143) (thickness 0.1778)))
     )
@@ -6595,7 +6595,7 @@
     )
   )
 
-  (gr_text "RGB LED Button\n1.0" (at 141.2 102.4 90) (layer B.SilkS)
+  (gr_text "RGB LED Button\n1.0" (at 141.85 102.4 90) (layer B.SilkS)
     (effects (font (size 0.8 0.8) (thickness 0.15)) (justify mirror))
   )
   (gr_line (start 139.2 112.4) (end 139.2 92.4) (angle 90) (layer Edge.Cuts) (width 0.15))
@@ -6606,7 +6606,7 @@
   (gr_text "RGB LED Button\n1.0" (at 141.2 102.4 90) (layer F.SilkS)
     (effects (font (size 0.8 0.8) (thickness 0.15)))
   )
-  (gr_text tinkerforge.com (at 163 102.4 90) (layer B.SilkS)
+  (gr_text tinkerforge.com (at 161.65 104.55 90) (layer B.SilkS)
     (effects (font (size 0.8 0.8) (thickness 0.15)) (justify mirror))
   )
   (gr_line (start 141.7 114.9) (end 161.7 114.9) (angle 90) (layer Edge.Cuts) (width 0.15))
