@@ -40,17 +40,17 @@ void button_read_calibration(Button *button) {
 	bootloader_read_eeprom_page(LED_CALIBRATION_PAGE, button->calibration_page);
 
 	if(button->calibration_page[LED_CALIBRATION_MAGIC_POS] != LED_CALIBRATION_MAGIC) {
-		button->calibration_page[LED_CALIBRATION_R_POS] = 100;
-		button->calibration_page[LED_CALIBRATION_G_POS] = 100;
-		button->calibration_page[LED_CALIBRATION_B_POS] = 56;
+		button->calibration_page[LED_CALIBRATION_RED_POS]   = 100;
+		button->calibration_page[LED_CALIBRATION_GREEN_POS] = 100;
+		button->calibration_page[LED_CALIBRATION_BLUE_POS]  = 55;
 	}
 }
 
 void button_write_calibration(Button *button, const uint32_t r, const uint32_t g, const uint32_t b) {
 	button->calibration_page[LED_CALIBRATION_MAGIC_POS] = LED_CALIBRATION_MAGIC;
-	button->calibration_page[LED_CALIBRATION_R_POS]     = r;
-	button->calibration_page[LED_CALIBRATION_G_POS]     = g;
-	button->calibration_page[LED_CALIBRATION_B_POS]     = b;
+	button->calibration_page[LED_CALIBRATION_RED_POS]   = r;
+	button->calibration_page[LED_CALIBRATION_GREEN_POS] = g;
+	button->calibration_page[LED_CALIBRATION_BLUE_POS]  = b;
 
 	bootloader_write_eeprom_page(LED_CALIBRATION_PAGE, button->calibration_page);
 }
@@ -75,23 +75,29 @@ void button_init(Button *button) {
 
 
 void button_tick(Button *button) {
+	static uint32_t last_calibration_red = 0;
+	static uint32_t last_calibration_green = 0;
+	static uint32_t last_calibration_blue = 0;
 	static uint8_t last_red = 0;
 	static uint8_t last_green = 0;
 	static uint8_t last_blue = 0;
 
-	if(last_red != button->red) {
-		ccu4_pwm_set_duty_cycle(LED_RED_CCU4_SLICE, button->red*25*button->calibration_page[LED_CALIBRATION_R_POS]/100);
+	if((last_red != button->red) || (last_calibration_red != button->calibration_page[LED_CALIBRATION_RED_POS])) {
+		ccu4_pwm_set_duty_cycle(LED_RED_CCU4_SLICE, button->red*25*button->calibration_page[LED_CALIBRATION_RED_POS]/100);
 		last_red = button->red;
+		last_calibration_red = button->calibration_page[LED_CALIBRATION_RED_POS];
 	}
 
-	if(last_green != button->green) {
-		ccu4_pwm_set_duty_cycle(LED_GREEN_CCU4_SLICE, button->green*25*button->calibration_page[LED_CALIBRATION_G_POS]/100);
+	if((last_green != button->green) || (last_calibration_green != button->calibration_page[LED_CALIBRATION_GREEN_POS])) {
+		ccu4_pwm_set_duty_cycle(LED_GREEN_CCU4_SLICE, button->green*25*button->calibration_page[LED_CALIBRATION_GREEN_POS]/100);
 		last_green = button->green;
+		last_calibration_green = button->calibration_page[LED_CALIBRATION_GREEN_POS];
 	}
 
-	if(last_blue != button->blue) {
-		ccu4_pwm_set_duty_cycle(LED_BLUE_CCU4_SLICE, button->blue*25*button->calibration_page[LED_CALIBRATION_B_POS]/100);
+	if((last_blue != button->blue) || (last_calibration_blue != button->calibration_page[LED_CALIBRATION_BLUE_POS])) {
+		ccu4_pwm_set_duty_cycle(LED_BLUE_CCU4_SLICE, button->blue*25*button->calibration_page[LED_CALIBRATION_BLUE_POS]/100);
 		last_blue = button->blue;
+		last_calibration_blue = button->calibration_page[LED_CALIBRATION_BLUE_POS];
 	}
 
 	button->state = XMC_GPIO_GetInput(BUTTON_PIN);

@@ -59,8 +59,8 @@ void communication_init(void);
 #define FID_SET_COLOR 1
 #define FID_GET_COLOR 2
 #define FID_GET_BUTTON_STATE 3
-#define FID_SET_RGB_CALIBRATION 5
-#define FID_GET_RGB_CALIBRATION 6
+#define FID_SET_COLOR_CALIBRATION 5
+#define FID_GET_COLOR_CALIBRATION 6
 
 #define FID_CALLBACK_BUTTON_STATE_CHANGED 4
 
@@ -98,29 +98,29 @@ typedef struct {
 
 typedef struct {
 	TFPMessageHeader header;
-	uint8_t r;
-	uint8_t g;
-	uint8_t b;
-} __attribute__((__packed__)) SetRGBCalibration;
+	uint8_t red;
+	uint8_t green;
+	uint8_t blue;
+} __attribute__((__packed__)) SetColorCalibration;
 
 typedef struct {
 	TFPMessageHeader header;
-} __attribute__((__packed__)) GetRGBCalibration;
+} __attribute__((__packed__)) GetColorCalibration;
 
 typedef struct {
 	TFPMessageHeader header;
-	uint8_t r;
-	uint8_t g;
-	uint8_t b;
-} __attribute__((__packed__)) GetRGBCalibration_Response;
+	uint8_t red;
+	uint8_t green;
+	uint8_t blue;
+} __attribute__((__packed__)) GetColorCalibration_Response;
 
 
 // Function prototypes
 BootloaderHandleMessageResponse set_color(const SetColor *data);
 BootloaderHandleMessageResponse get_color(const GetColor *data, GetColor_Response *response);
 BootloaderHandleMessageResponse get_button_state(const GetButtonState *data, GetButtonState_Response *response);
-BootloaderHandleMessageResponse set_rgb_calibration(const SetRGBCalibration *data);
-BootloaderHandleMessageResponse get_rgb_calibration(const GetRGBCalibration *data, GetRGBCalibration_Response *response);
+BootloaderHandleMessageResponse set_color_calibration(const SetColorCalibration *data);
+BootloaderHandleMessageResponse get_color_calibration(const GetColorCalibration *data, GetColorCalibration_Response *response);
 
 // Callbacks
 bool handle_button_state_changed_callback(void);
