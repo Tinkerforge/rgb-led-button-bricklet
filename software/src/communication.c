@@ -33,6 +33,8 @@ BootloaderHandleMessageResponse handle_message(const void *message, void *respon
 		case FID_SET_COLOR: return set_color(message);
 		case FID_GET_COLOR: return get_color(message, response);
 		case FID_GET_BUTTON_STATE: return get_button_state(message, response);
+		case FID_SET_RGB_CALIBRATION: return set_rgb_calibration(message);
+		case FID_GET_RGB_CALIBRATION: return get_rgb_calibration(message, response);
 		default: return HANDLE_MESSAGE_RESPONSE_NOT_SUPPORTED;
 	}
 }
@@ -59,7 +61,24 @@ BootloaderHandleMessageResponse get_button_state(const GetButtonState *data, Get
 	return HANDLE_MESSAGE_RESPONSE_NEW_MESSAGE;
 }
 
+BootloaderHandleMessageResponse set_rgb_calibration(const SetRGBCalibration *data) {
+	if((data->r > 100) || (data->g > 100) || (data->b > 100)) {
+		return HANDLE_MESSAGE_RESPONSE_INVALID_PARAMETER;
+	}
 
+	button_write_calibration(&button, data->r, data->g, data->b);
+
+	return HANDLE_MESSAGE_RESPONSE_EMPTY;
+}
+
+BootloaderHandleMessageResponse get_rgb_calibration(const GetRGBCalibration *data, GetRGBCalibration_Response *response) {
+	response->header.length = sizeof(GetRGBCalibration_Response);
+	response->r = button.calibration_page[LED_CALIBRATION_R_POS];
+	response->g = button.calibration_page[LED_CALIBRATION_G_POS];
+	response->b = button.calibration_page[LED_CALIBRATION_B_POS];
+
+	return HANDLE_MESSAGE_RESPONSE_NEW_MESSAGE;
+}
 
 
 bool handle_button_state_changed_callback(void) {

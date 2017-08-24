@@ -25,6 +25,16 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "bricklib2/bootloader/bootloader.h"
+
+#define LED_CALIBRATION_PAGE      1
+#define LED_CALIBRATION_MAGIC_POS 0
+#define LED_CALIBRATION_R_POS     1
+#define LED_CALIBRATION_G_POS     2
+#define LED_CALIBRATION_B_POS     3
+
+#define LED_CALIBRATION_MAGIC 0x3456789A
+
 typedef struct {
 	uint8_t red;
 	uint8_t green;
@@ -32,8 +42,13 @@ typedef struct {
 
 	uint8_t state;
 	uint8_t period;
+
+	bool calibration_read;
+	uint32_t calibration_page[EEPROM_PAGE_SIZE/sizeof(uint32_t)];
 } Button;
 
+void button_read_calibration(Button *button);
+void button_write_calibration(Button *button, const uint32_t r, const uint32_t g, const uint32_t b);
 void button_init();
 void button_tick();
 

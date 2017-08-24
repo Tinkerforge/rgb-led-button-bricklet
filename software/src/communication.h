@@ -37,10 +37,30 @@ void communication_init(void);
 #define RGB_LED_BUTTON_BUTTON_STATE_PRESSED 0
 #define RGB_LED_BUTTON_BUTTON_STATE_RELEASED 1
 
+#define RGB_LED_BUTTON_BOOTLOADER_MODE_BOOTLOADER 0
+#define RGB_LED_BUTTON_BOOTLOADER_MODE_FIRMWARE 1
+#define RGB_LED_BUTTON_BOOTLOADER_MODE_BOOTLOADER_WAIT_FOR_REBOOT 2
+#define RGB_LED_BUTTON_BOOTLOADER_MODE_FIRMWARE_WAIT_FOR_REBOOT 3
+#define RGB_LED_BUTTON_BOOTLOADER_MODE_FIRMWARE_WAIT_FOR_ERASE_AND_REBOOT 4
+
+#define RGB_LED_BUTTON_BOOTLOADER_STATUS_OK 0
+#define RGB_LED_BUTTON_BOOTLOADER_STATUS_INVALID_MODE 1
+#define RGB_LED_BUTTON_BOOTLOADER_STATUS_NO_CHANGE 2
+#define RGB_LED_BUTTON_BOOTLOADER_STATUS_ENTRY_FUNCTION_NOT_PRESENT 3
+#define RGB_LED_BUTTON_BOOTLOADER_STATUS_DEVICE_IDENTIFIER_INCORRECT 4
+#define RGB_LED_BUTTON_BOOTLOADER_STATUS_CRC_MISMATCH 5
+
+#define RGB_LED_BUTTON_STATUS_LED_CONFIG_OFF 0
+#define RGB_LED_BUTTON_STATUS_LED_CONFIG_ON 1
+#define RGB_LED_BUTTON_STATUS_LED_CONFIG_SHOW_HEARTBEAT 2
+#define RGB_LED_BUTTON_STATUS_LED_CONFIG_SHOW_STATUS 3
+
 // Function and callback IDs and structs
 #define FID_SET_COLOR 1
 #define FID_GET_COLOR 2
 #define FID_GET_BUTTON_STATE 3
+#define FID_SET_RGB_CALIBRATION 5
+#define FID_GET_RGB_CALIBRATION 6
 
 #define FID_CALLBACK_BUTTON_STATE_CHANGED 4
 
@@ -76,11 +96,31 @@ typedef struct {
 	uint8_t state;
 } __attribute__((__packed__)) ButtonStateChanged_Callback;
 
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+} __attribute__((__packed__)) SetRGBCalibration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetRGBCalibration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+} __attribute__((__packed__)) GetRGBCalibration_Response;
+
 
 // Function prototypes
 BootloaderHandleMessageResponse set_color(const SetColor *data);
 BootloaderHandleMessageResponse get_color(const GetColor *data, GetColor_Response *response);
 BootloaderHandleMessageResponse get_button_state(const GetButtonState *data, GetButtonState_Response *response);
+BootloaderHandleMessageResponse set_rgb_calibration(const SetRGBCalibration *data);
+BootloaderHandleMessageResponse get_rgb_calibration(const GetRGBCalibration *data, GetRGBCalibration_Response *response);
 
 // Callbacks
 bool handle_button_state_changed_callback(void);

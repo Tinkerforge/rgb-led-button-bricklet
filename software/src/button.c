@@ -69,6 +69,8 @@ void button_init(Button *button) {
 	XMC_GPIO_Init(BUTTON_PIN, &button_pin_config);
 
 	button->period = 0;
+
+	button_read_calibration(button);
 }
 
 
