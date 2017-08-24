@@ -271,7 +271,7 @@ SPI Slave\nP0.13 : CH0-DX2 : SEL\nP0.14 : CH0-DX1 : CLK\nP0.15 : CH0-DX0 : MOSI
 Text Notes 4100 4600 0    47   ~ 0
 SPI Slave\nP2.0 :  CH0-DOUT0 : MISO\n
 Text Notes 4100 4100 0    47   ~ 0
-SW\nP1.0 : red\nP1.1 : green\nP1.2 : blue\n
+SW\nP1.0 : green\nP1.1 : red\nP1.2 : blue\n
 $Comp
 L CONN_01X02 P2
 U 1 1 5806FC08

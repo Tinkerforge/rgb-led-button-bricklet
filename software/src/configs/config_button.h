@@ -36,6 +36,6 @@
 #define LED_BLUE_PIN            P1_2
 #define LED_BLUE_CCU4_SLICE     2
 
-#define BUTTON_PIN              P0_0
+#define BUTTON_PIN              P2_11
 
 #endif
