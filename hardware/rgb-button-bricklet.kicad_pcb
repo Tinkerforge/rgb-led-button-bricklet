@@ -1,4 +1,4 @@
-(kicad_pcb (version 4) (host pcbnew 4.0.7-e0-6372~58~ubuntu16.10.1)
+(kicad_pcb (version 4) (host pcbnew 4.0.7-e1-6374~58~ubuntu17.04.1)
 
   (general
     (links 41)
@@ -6564,7 +6564,7 @@
     )
   )
 
-  (module kicad-libraries:RGB_SWITCH_AD (layer B.Cu) (tedit 59917537) (tstamp 598C29E7)
+  (module kicad-libraries:RGB_SWITCH_AD (layer B.Cu) (tedit 599ED056) (tstamp 598C29E7)
     (at 151.7 102.4)
     (path /58A2F156)
     (fp_text reference SW1 (at 6.1 2.9) (layer B.Fab)
@@ -6577,10 +6577,10 @@
     (fp_line (start 7.5 7.5) (end 7.5 -7.5) (layer B.Fab) (width 0.15))
     (fp_line (start 7.5 -7.5) (end -7.5 -7.5) (layer B.Fab) (width 0.15))
     (fp_line (start -7.5 -7.5) (end -7.5 7.5) (layer B.Fab) (width 0.15))
-    (pad "" np_thru_hole circle (at -6.35 6.4) (size 1.3 1.3) (drill 1.2) (layers *.Cu *.Mask B.SilkS))
-    (pad "" np_thru_hole circle (at 6.35 6.35) (size 1.3 1.3) (drill 1.2) (layers *.Cu *.Mask B.SilkS))
-    (pad "" np_thru_hole circle (at 6.35 -6.35) (size 1.3 1.3) (drill 1.2) (layers *.Cu *.Mask B.SilkS))
-    (pad "" np_thru_hole circle (at -6.35 -6.35) (size 1.3 1.3) (drill 1.2) (layers *.Cu *.Mask B.SilkS))
+    (pad "" np_thru_hole circle (at -6.35 6.4) (size 1.35 1.35) (drill 1.35) (layers *.Cu *.Mask B.SilkS))
+    (pad "" np_thru_hole circle (at 6.35 6.35) (size 1.35 1.35) (drill 1.35) (layers *.Cu *.Mask B.SilkS))
+    (pad "" np_thru_hole circle (at 6.35 -6.35) (size 1.35 1.35) (drill 1.35) (layers *.Cu *.Mask B.SilkS))
+    (pad "" np_thru_hole circle (at -6.35 -6.35) (size 1.35 1.35) (drill 1.35) (layers *.Cu *.Mask B.SilkS))
     (pad 1 thru_hole circle (at 3.81 -4.5) (size 1.5 1.5) (drill 0.9) (layers *.Cu *.Mask B.SilkS)
       (net 10 PinSwitch))
     (pad 2 thru_hole circle (at -3.81 -4.5) (size 1.5 1.5) (drill 0.9) (layers *.Cu *.Mask B.SilkS)
