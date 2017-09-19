@@ -40,12 +40,12 @@ Date "2017-05-05"
 Rev "1.0"
 Comp "Tinkerforge GmbH"
 Comment1 "Licensed under CERN OHL v.1.1"
-Comment2 "Copyright (©) 2017, L.Lauer <lukas@tinkerforge.com>"
+Comment2 "Copyright (©) 2017, B.Nordmeyer <bastian@tinkerforge.com>"
 Comment3 ""
 Comment4 ""
 $EndDescr
 Text Notes 600  7650 0    40   ~ 0
-Copyright Tinkerforge GmbH 2016.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n
+Copyright Tinkerforge GmbH 2017.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n
 NoConn ~ 1550 1900
 $Comp
 L DRILL U2
@@ -118,7 +118,7 @@ L XMC1XXX24 U1
 U 1 1 5805EA54
 P 3800 1300
 F 0 "U1" H 3650 1700 60  0000 C CNN
-F 1 "XMC1XXX24" H 3800 850 60  0000 C CNN
+F 1 "XMC1100-16" H 3800 850 60  0000 C CNN
 F 2 "kicad-libraries:QFN24-4x4mm-0.5mm" H 3950 2050 60  0001 C CNN
 F 3 "" H 3950 2050 60  0000 C CNN
 	1    3800 1300
@@ -129,7 +129,7 @@ L XMC1XXX24 U1
 U 2 1 5805EBB8
 P 3800 2550
 F 0 "U1" H 3650 3150 60  0000 C CNN
-F 1 "XMC1XXX24" H 3800 1950 60  0000 C CNN
+F 1 "XMC1100-16" H 3800 1950 60  0000 C CNN
 F 2 "kicad-libraries:QFN24-4x4mm-0.5mm" H 3950 3300 60  0001 C CNN
 F 3 "" H 3950 3300 60  0000 C CNN
 	2    3800 2550
@@ -140,7 +140,7 @@ L XMC1XXX24 U1
 U 4 1 5805EC1F
 P 3800 4900
 F 0 "U1" H 3650 5350 60  0000 C CNN
-F 1 "XMC1XXX24" H 3800 4400 60  0000 C CNN
+F 1 "XMC1100-16" H 3800 4400 60  0000 C CNN
 F 2 "kicad-libraries:QFN24-4x4mm-0.5mm" H 3950 5650 60  0001 C CNN
 F 3 "" H 3950 5650 60  0000 C CNN
 	4    3800 4900
@@ -151,7 +151,7 @@ L XMC1XXX24 U1
 U 3 1 5805ECD4
 P 3800 4000
 F 0 "U1" H 3650 4250 60  0000 C CNN
-F 1 "XMC1XXX24" H 3800 3700 60  0000 C CNN
+F 1 "XMC1100-16" H 3800 3700 60  0000 C CNN
 F 2 "kicad-libraries:QFN24-4x4mm-0.5mm" H 3950 4750 60  0001 C CNN
 F 3 "" H 3950 4750 60  0000 C CNN
 	3    3800 4000
@@ -306,7 +306,6 @@ NoConn ~ 3450 4150
 NoConn ~ 3450 2200
 NoConn ~ 3450 4850
 NoConn ~ 3450 4750
-NoConn ~ 3500 3150
 $Comp
 L RGB_SWITCH_AD SW1
 U 1 1 58A2F156
