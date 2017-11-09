@@ -27,16 +27,12 @@
 
 #include "bricklib2/bootloader/bootloader.h"
 #include "bricklib2/hal/system_timer/system_timer.h"
-#include "bricklib2/hal/uartbb/uartbb.h"
 #include "communication.h"
 #include "button.h"
 
 Button button;
 
 int main(void) {
-	uartbb_init();
-	uartbb_puts("Start RGB LED Button Bricklet\n\r");
-
 	button_init(&button);
 	communication_init();
 
