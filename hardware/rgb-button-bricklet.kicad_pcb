@@ -1,9 +1,9 @@
-(kicad_pcb (version 4) (host pcbnew 4.0.2+dfsg1-stable)
+(kicad_pcb (version 4) (host pcbnew 4.0.7-e2-6376~58~ubuntu16.04.1)
 
   (general
     (links 41)
     (no_connects 0)
-    (area 139.124999 89.824999 164.275001 114.975001)
+    (area 138.344999 89.044999 278.84286 159.815)
     (thickness 1.6)
     (drawings 13)
     (tracks 141)
@@ -6600,7 +6600,7 @@
     )
   )
 
-  (gr_text status (at 160.45 97.55 90) (layer F.SilkS)
+  (gr_text Status (at 160.45 97.55 90) (layer F.SilkS)
     (effects (font (size 0.8 0.8) (thickness 0.15)))
   )
   (gr_text "RGB LED Button\n1.0" (at 141.85 102.4 90) (layer B.SilkS)
