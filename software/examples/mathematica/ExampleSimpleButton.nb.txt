@@ -1,0 +1,21 @@
+Needs["NETLink`"]
+LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
+
+(*FIXME: This example is incomplete*)
+
+host="localhost"
+port=4223
+uid="XYZ"(*Change XYZ to the UID of your RGB LED Button Bricklet*)
+
+(*Create IPConnection and device object*)
+ipcon=NETNew["Tinkerforge.IPConnection"]
+rlb=NETNew["Tinkerforge.BrickletRGBLEDButton",uid,ipcon]
+ipcon@Connect[host,port]
+
+(*Get current button state*)
+Print["State: "<>ToString[rlb@GetButtonState[]]]
+
+(*Clean up*)
+ipcon@Disconnect[]
+ReleaseNETObject[rlb]
+ReleaseNETObject[ipcon]

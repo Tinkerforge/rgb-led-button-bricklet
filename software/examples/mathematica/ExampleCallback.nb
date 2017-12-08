@@ -1,0 +1,38 @@
+Notebook[{
+ Cell[
+  BoxData[{
+   RowBox[{"Needs", "[", "\"\<NETLink`\>\"", "]"}],
+   RowBox[{"LoadNETAssembly", "[", RowBox[{"\"\<Tinkerforge\>\"", ",", RowBox[{RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<../../..\>\""}]}], "]"}]
+  }], "Input"
+ ],
+ Cell[
+  BoxData[{
+   RowBox[{"(*", "FIXME: This example is incomplete", "*)"}],
+   RowBox[{"
+"}],
+   RowBox[{"host", "=", "\"\<localhost\>\""}],
+   RowBox[{"port", "=", "4223"}],
+   RowBox[{"uid", "=", "\"\<XYZ\>\"", RowBox[{"(*", "Change XYZ to the UID of your RGB LED Button Bricklet", "*)"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Create IPConnection and device object", "*)"}],
+   RowBox[{"ipcon", "=", RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}],
+   RowBox[{"rlb", "=", RowBox[{"NETNew", "[", RowBox[{"\"\<Tinkerforge.BrickletRGBLEDButton\>\"", ",", "uid", ",", "ipcon"}], "]"}]}],
+   RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Callback function for button state changed callback", "*)"}],
+   RowBox[{RowBox[{"ButtonStateChangedCB", "[", RowBox[{"sender_", ",", "state_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<State: \>\"", "<>", RowBox[{"ToString", "[", "state", "]"}]}], "]"}]}],
+   RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"rlb", "@", "ButtonStateChangedCallback"}], ",", "ButtonStateChangedCB"}], "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Clean up", "*)"}],
+   RowBox[{"ipcon", "@", RowBox[{"Disconnect", "[", "]"}]}],
+   RowBox[{"ReleaseNETObject", "[", "rlb", "]"}],
+   RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]
+  }], "Input"
+ ]
+}]
