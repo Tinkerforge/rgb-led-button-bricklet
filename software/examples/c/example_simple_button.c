@@ -32,7 +32,7 @@ int main(void) {
 		return 1;
 	}
 
-	printf("State: %d\n", state);
+	printf("State: %u\n", state);
 
 	printf("Press key to exit\n");
 	getchar();

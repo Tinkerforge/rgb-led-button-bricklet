@@ -13,7 +13,7 @@
 void cb_button_state_changed(uint8_t state, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("State: %d\n", state);
+	printf("State: %u\n", state);
 }
 
 int main(void) {
