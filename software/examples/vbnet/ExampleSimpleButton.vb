@@ -1,8 +1,6 @@
 Imports System
 Imports Tinkerforge
 
-' FIXME: This example is incomplete
-
 Module ExampleSimpleButton
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
@@ -17,7 +15,12 @@ Module ExampleSimpleButton
 
         ' Get current button state
         Dim state As Byte = rlb.GetButtonState()
-        Console.WriteLine("State: " + state.ToString())
+
+        If state = BrickletRGBLEDButton.BUTTON_STATE_PRESSED Then
+            Console.WriteLine("State: Pressed")
+        Else If state = BrickletRGBLEDButton.BUTTON_STATE_RELEASED Then
+            Console.WriteLine("State: Released")
+        End If
 
         Console.WriteLine("Press key to exit")
         Console.ReadLine()

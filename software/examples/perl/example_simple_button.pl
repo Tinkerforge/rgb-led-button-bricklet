@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 
-# FIXME: This example is incomplete
-
 use strict;
 use Tinkerforge::IPConnection;
 use Tinkerforge::BrickletRGBLEDButton;
@@ -18,7 +16,15 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 
 # Get current button state
 my $state = $rlb->get_button_state();
-print "State: $state\n";
+
+if ($state == $rlb->BUTTON_STATE_PRESSED)
+{
+    print "State: Pressed\n";
+}
+elsif ($state == $rlb->BUTTON_STATE_RELEASED)
+{
+    print "State: Released\n";
+}
 
 print "Press key to exit\n";
 <STDIN>;

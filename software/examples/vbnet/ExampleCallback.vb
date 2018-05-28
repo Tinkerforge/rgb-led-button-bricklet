@@ -1,8 +1,6 @@
 Imports System
 Imports Tinkerforge
 
-' FIXME: This example is incomplete
-
 Module ExampleCallback
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
@@ -10,7 +8,11 @@ Module ExampleCallback
 
     ' Callback subroutine for button state changed callback
     Sub ButtonStateChangedCB(ByVal sender As BrickletRGBLEDButton, ByVal state As Byte)
-        Console.WriteLine("State: " + state.ToString())
+        If state = BrickletRGBLEDButton.BUTTON_STATE_PRESSED Then
+            Console.WriteLine("State: Pressed")
+        Else If state = BrickletRGBLEDButton.BUTTON_STATE_RELEASED Then
+            Console.WriteLine("State: Released")
+        End If
     End Sub
 
     Sub Main()

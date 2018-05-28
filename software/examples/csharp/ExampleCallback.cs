@@ -1,8 +1,6 @@
 using System;
 using Tinkerforge;
 
-// FIXME: This example is incomplete
-
 class Example
 {
 	private static string HOST = "localhost";
@@ -12,7 +10,14 @@ class Example
 	// Callback function for button state changed callback
 	static void ButtonStateChangedCB(BrickletRGBLEDButton sender, byte state)
 	{
-		Console.WriteLine("State: " + state);
+		if(state == BrickletRGBLEDButton.BUTTON_STATE_PRESSED)
+		{
+			Console.WriteLine("State: Pressed");
+		}
+		else if(state == BrickletRGBLEDButton.BUTTON_STATE_RELEASED)
+		{
+			Console.WriteLine("State: Released");
+		}
 	}
 
 	static void Main()

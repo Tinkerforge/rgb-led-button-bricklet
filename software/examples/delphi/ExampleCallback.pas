@@ -1,7 +1,5 @@
 program ExampleCallback;
 
-{ FIXME: This example is incomplete }
-
 {$ifdef MSWINDOWS}{$apptype CONSOLE}{$endif}
 {$ifdef FPC}{$mode OBJFPC}{$H+}{$endif}
 
@@ -29,7 +27,12 @@ var
 { Callback procedure for button state changed callback }
 procedure TExample.ButtonStateChangedCB(sender: TBrickletRGBLEDButton; const state: byte);
 begin
-  WriteLn(Format('State: %d', [state]));
+  if (state = BRICKLET_RGB_LED_BUTTON_BUTTON_STATE_PRESSED) then begin
+    WriteLn('State: Pressed');
+  end
+  else if (state = BRICKLET_RGB_LED_BUTTON_BUTTON_STATE_RELEASED) then begin
+    WriteLn('State: Released');
+  end;
 end;
 
 procedure TExample.Execute;

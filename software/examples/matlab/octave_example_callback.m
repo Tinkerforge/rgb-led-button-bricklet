@@ -1,8 +1,6 @@
 function octave_example_callback()
     more off;
 
-    % FIXME: This example is incomplete
-
     HOST = "localhost";
     PORT = 4223;
     UID = "XYZ"; % Change XYZ to the UID of your RGB LED Button Bricklet
@@ -22,5 +20,9 @@ end
 
 % Callback function for button state changed callback
 function cb_button_state_changed(e)
-    fprintf("State: %d\n", e.state);
+    if e.state == 0
+        fprintf("State: Pressed\n");
+    elseif e.state == 1
+        fprintf("State: Released\n");
+    end
 end

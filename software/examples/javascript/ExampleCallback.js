@@ -1,7 +1,5 @@
 var Tinkerforge = require('tinkerforge');
 
-// FIXME: This example is incomplete
-
 var HOST = 'localhost';
 var PORT = 4223;
 var UID = 'XYZ'; // Change XYZ to the UID of your RGB LED Button Bricklet
@@ -20,7 +18,12 @@ ipcon.connect(HOST, PORT,
 rlb.on(Tinkerforge.BrickletRGBLEDButton.CALLBACK_BUTTON_STATE_CHANGED,
     // Callback function for button state changed callback
     function (state) {
-        console.log('State: ' + state);
+        if(state === Tinkerforge.BrickletRGBLEDButton.BUTTON_STATE_PRESSED) {
+            console.log('State: Pressed');
+        }
+        else if(state === Tinkerforge.BrickletRGBLEDButton.BUTTON_STATE_RELEASED) {
+            console.log('State: Released');
+        }
     }
 );
 

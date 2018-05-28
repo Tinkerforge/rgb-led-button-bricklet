@@ -1,7 +1,5 @@
 <?php
 
-// FIXME: This example is incomplete
-
 require_once('Tinkerforge/IPConnection.php');
 require_once('Tinkerforge/BrickletRGBLEDButton.php');
 
@@ -20,7 +18,12 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 
 // Get current button state
 $state = $rlb->getButtonState();
-echo "State: $state\n";
+
+if ($state == BrickletRGBLEDButton::BUTTON_STATE_PRESSED) {
+    echo "State: Pressed\n";
+} elseif ($state == BrickletRGBLEDButton::BUTTON_STATE_RELEASED) {
+    echo "State: Released\n";
+}
 
 echo "Press key to exit\n";
 fgetc(fopen('php://stdin', 'r'));

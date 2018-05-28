@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 # -*- ruby encoding: utf-8 -*-
 
-# FIXME: This example is incomplete
-
 require 'tinkerforge/ip_connection'
 require 'tinkerforge/bricklet_rgb_led_button'
 
@@ -20,7 +18,11 @@ ipcon.connect HOST, PORT # Connect to brickd
 
 # Register button state changed callback
 rlb.register_callback(BrickletRGBLEDButton::CALLBACK_BUTTON_STATE_CHANGED) do |state|
-  puts "State: #{state}"
+  if state == BrickletRGBLEDButton::BUTTON_STATE_PRESSED
+    puts "State: Pressed"
+  elsif state == BrickletRGBLEDButton::BUTTON_STATE_RELEASED
+    puts "State: Released"
+  end
 end
 
 puts 'Press key to exit'

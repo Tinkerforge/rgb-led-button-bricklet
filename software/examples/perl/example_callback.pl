@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 
-# FIXME: This example is incomplete
-
 use strict;
 use Tinkerforge::IPConnection;
 use Tinkerforge::BrickletRGBLEDButton;
@@ -15,7 +13,14 @@ sub cb_button_state_changed
 {
     my ($state) = @_;
 
-    print "State: $state\n";
+    if ($state == Tinkerforge::BrickletRGBLEDButton->BUTTON_STATE_PRESSED)
+    {
+        print "State: Pressed\n";
+    }
+    elsif ($state == Tinkerforge::BrickletRGBLEDButton->BUTTON_STATE_RELEASED)
+    {
+        print "State: Released\n";
+    }
 }
 
 my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection

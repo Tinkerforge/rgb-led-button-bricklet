@@ -1,7 +1,5 @@
 <?php
 
-// FIXME: This example is incomplete
-
 require_once('Tinkerforge/IPConnection.php');
 require_once('Tinkerforge/BrickletRGBLEDButton.php');
 
@@ -15,7 +13,11 @@ const UID = 'XYZ'; // Change XYZ to the UID of your RGB LED Button Bricklet
 // Callback function for button state changed callback
 function cb_buttonStateChanged($state)
 {
-    echo "State: $state\n";
+    if ($state == BrickletRGBLEDButton::BUTTON_STATE_PRESSED) {
+        echo "State: Pressed\n";
+    } elseif ($state == BrickletRGBLEDButton::BUTTON_STATE_RELEASED) {
+        echo "State: Released\n";
+    }
 }
 
 $ipcon = new IPConnection(); // Create IP connection

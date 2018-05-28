@@ -1,8 +1,6 @@
 using System;
 using Tinkerforge;
 
-// FIXME: This example is incomplete
-
 class Example
 {
 	private static string HOST = "localhost";
@@ -19,7 +17,15 @@ class Example
 
 		// Get current button state
 		byte state = rlb.GetButtonState();
-		Console.WriteLine("State: " + state);
+
+		if(state == BrickletRGBLEDButton.BUTTON_STATE_PRESSED)
+		{
+			Console.WriteLine("State: Pressed");
+		}
+		else if(state == BrickletRGBLEDButton.BUTTON_STATE_RELEASED)
+		{
+			Console.WriteLine("State: Released");
+		}
 
 		Console.WriteLine("Press enter to exit");
 		Console.ReadLine();

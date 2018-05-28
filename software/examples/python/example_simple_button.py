@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# FIXME: This example is incomplete
-
 HOST = "localhost"
 PORT = 4223
 UID = "XYZ" # Change XYZ to the UID of your RGB LED Button Bricklet
@@ -19,7 +17,11 @@ if __name__ == "__main__":
 
     # Get current button state
     state = rlb.get_button_state()
-    print("State: " + str(state))
+
+    if state == rlb.BUTTON_STATE_PRESSED:
+        print("State: Pressed")
+    elif state == rlb.BUTTON_STATE_RELEASED:
+        print("State: Released")
 
     raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

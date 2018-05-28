@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# FIXME: This example is incomplete
-
 HOST = "localhost"
 PORT = 4223
 UID = "XYZ" # Change XYZ to the UID of your RGB LED Button Bricklet
@@ -12,7 +10,10 @@ from tinkerforge.bricklet_rgb_led_button import BrickletRGBLEDButton
 
 # Callback function for button state changed callback
 def cb_button_state_changed(state):
-    print("State: " + str(state))
+    if state == BrickletRGBLEDButton.BUTTON_STATE_PRESSED:
+        print("State: Pressed")
+    elif state == BrickletRGBLEDButton.BUTTON_STATE_RELEASED:
+        print("State: Released")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection

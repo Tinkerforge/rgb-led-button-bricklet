@@ -1,8 +1,6 @@
 import com.tinkerforge.IPConnection;
 import com.tinkerforge.BrickletRGBLEDButton;
 
-// FIXME: This example is incomplete
-
 public class ExampleSimpleButton {
 	private static final String HOST = "localhost";
 	private static final int PORT = 4223;
@@ -21,7 +19,12 @@ public class ExampleSimpleButton {
 
 		// Get current button state
 		int state = rlb.getButtonState(); // Can throw com.tinkerforge.TimeoutException
-		System.out.println("State: " + state);
+
+		if(state == BrickletRGBLEDButton.BUTTON_STATE_PRESSED) {
+			System.out.println("State: Pressed");
+		} else if(state == BrickletRGBLEDButton.BUTTON_STATE_RELEASED) {
+			System.out.println("State: Released");
+		}
 
 		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();

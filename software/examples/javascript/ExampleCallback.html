@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-
-<!-- FIXME: This example is incomplete -->
-
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <head>
@@ -46,7 +43,12 @@
                 rlb.on(Tinkerforge.BrickletRGBLEDButton.CALLBACK_BUTTON_STATE_CHANGED,
                     // Callback function for button state changed callback
                     function (state) {
-                        textArea.value += 'State: ' + state + '\n';
+                        if(state === Tinkerforge.BrickletRGBLEDButton.BUTTON_STATE_PRESSED) {
+                            textArea.value += 'State: Pressed\n';
+                        }
+                        else if(state === Tinkerforge.BrickletRGBLEDButton.BUTTON_STATE_RELEASED) {
+                            textArea.value += 'State: Released\n';
+                        }
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );

@@ -2,8 +2,6 @@ function matlab_example_callback()
     import com.tinkerforge.IPConnection;
     import com.tinkerforge.BrickletRGBLEDButton;
 
-    % FIXME: This example is incomplete
-
     HOST = 'localhost';
     PORT = 4223;
     UID = 'XYZ'; % Change XYZ to the UID of your RGB LED Button Bricklet
@@ -23,5 +21,9 @@ end
 
 % Callback function for button state changed callback
 function cb_button_state_changed(e)
-    fprintf('State: %i\n', e.state);
+    if e.state == com.tinkerforge.BrickletRGBLEDButton.BUTTON_STATE_PRESSED
+        fprintf('State: Pressed\n');
+    elseif e.state == com.tinkerforge.BrickletRGBLEDButton.BUTTON_STATE_RELEASED
+        fprintf('State: Released\n');
+    end
 end

@@ -1,8 +1,6 @@
 function octave_example_simple_button()
     more off;
 
-    % FIXME: This example is incomplete
-
     HOST = "localhost";
     PORT = 4223;
     UID = "XYZ"; % Change XYZ to the UID of your RGB LED Button Bricklet
@@ -15,7 +13,12 @@ function octave_example_simple_button()
 
     % Get current button state
     state = rlb.getButtonState();
-    fprintf("State: %d\n", state);
+
+    if state == 0
+        fprintf("State: Pressed\n");
+    elseif state == 1
+        fprintf("State: Released\n");
+    end
 
     input("Press key to exit\n", "s");
     ipcon.disconnect();

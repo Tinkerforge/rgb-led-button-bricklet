@@ -1,7 +1,5 @@
 program ExampleSimpleButton;
 
-{ FIXME: This example is incomplete }
-
 {$ifdef MSWINDOWS}{$apptype CONSOLE}{$endif}
 {$ifdef FPC}{$mode OBJFPC}{$H+}{$endif}
 
@@ -40,7 +38,13 @@ begin
 
   { Get current button state }
   state := rlb.GetButtonState;
-  WriteLn(Format('State: %d', [state]));
+
+  if (state = BRICKLET_RGB_LED_BUTTON_BUTTON_STATE_PRESSED) then begin
+    WriteLn('State: Pressed');
+  end
+  else if (state = BRICKLET_RGB_LED_BUTTON_BUTTON_STATE_RELEASED) then begin
+    WriteLn('State: Released');
+  end;
 
   WriteLn('Press key to exit');
   ReadLn;

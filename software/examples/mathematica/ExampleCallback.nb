@@ -7,9 +7,6 @@ Notebook[{
  ],
  Cell[
   BoxData[{
-   RowBox[{"(*", "FIXME: This example is incomplete", "*)"}],
-   RowBox[{"
-"}],
    RowBox[{"host", "=", "\"\<localhost\>\""}],
    RowBox[{"port", "=", "4223"}],
    RowBox[{"uid", "=", "\"\<XYZ\>\"", RowBox[{"(*", "Change XYZ to the UID of your RGB LED Button Bricklet", "*)"}]}],
@@ -22,7 +19,9 @@ Notebook[{
    RowBox[{"
 "}],
    RowBox[{"(*", "Callback function for button state changed callback", "*)"}],
-   RowBox[{RowBox[{"ButtonStateChangedCB", "[", RowBox[{"sender_", ",", "state_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<State: \>\"", "<>", RowBox[{"ToString", "[", "state", "]"}]}], "]"}]}],
+   RowBox[{RowBox[{"ButtonStateChangedCB", "[", RowBox[{"sender_", ",", "state_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Module", "[", RowBox[{RowBox[{"{", "}"}], ",", RowBox[{"\[IndentingNewLine]", RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "Tinkerforge`BrickletRGBLEDButton`BUTTONUSTATEUPRESSED"}], ",", RowBox[{"Print", "[", "\"\<State: Pressed\>\"", "]"}]}], "]"}], ";", "\[IndentingNewLine]", RowBox[{"If", "[", RowBox[{RowBox[{"state", "==", "Tinkerforge`BrickletRGBLEDButton`BUTTONUSTATEURELEASED"}], ",", RowBox[{"Print", "[", "\"\<State: Released\>\"", "]"}]}], "]"}], "\[IndentingNewLine]"}]}], "]"}]}],
+   RowBox[{"
+"}],
    RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"rlb", "@", "ButtonStateChangedCallback"}], ",", "ButtonStateChangedCB"}], "]"}],
    RowBox[{"
 "}],

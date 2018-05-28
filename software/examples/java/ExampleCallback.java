@@ -1,8 +1,6 @@
 import com.tinkerforge.IPConnection;
 import com.tinkerforge.BrickletRGBLEDButton;
 
-// FIXME: This example is incomplete
-
 public class ExampleCallback {
 	private static final String HOST = "localhost";
 	private static final int PORT = 4223;
@@ -22,7 +20,11 @@ public class ExampleCallback {
 		// Add button state changed listener
 		rlb.addButtonStateChangedListener(new BrickletRGBLEDButton.ButtonStateChangedListener() {
 			public void buttonStateChanged(int state) {
-				System.out.println("State: " + state);
+				if(state == BrickletRGBLEDButton.BUTTON_STATE_PRESSED) {
+					System.out.println("State: Pressed");
+				} else if(state == BrickletRGBLEDButton.BUTTON_STATE_RELEASED) {
+					System.out.println("State: Released");
+				}
 			}
 		});
 
