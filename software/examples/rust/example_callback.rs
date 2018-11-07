@@ -12,10 +12,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
                                           // Don't use device before ipcon is connected.
 
-    // Create receiver for button state changed events.
-    let button_state_changed_receiver = rlb.get_button_state_changed_receiver();
+    let button_state_changed_receiver = rlb.get_button_state_changed_callback_receiver();
 
-    // Spawn thread to handle received events. This thread ends when the `rlb` object
+    // Spawn thread to handle received callback messages.
+    // This thread ends when the `rlb` object
     // is dropped, so there is no need for manual cleanup.
     thread::spawn(move || {
         for button_state_changed in button_state_changed_receiver {
