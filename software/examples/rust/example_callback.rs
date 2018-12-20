@@ -1,8 +1,5 @@
-use std::{io, error::Error};
-use std::thread;
-use tinkerforge::{ip_connection::IpConnection, 
-                  rgb_led_button_bricklet::*};
-
+use std::{error::Error, io, thread};
+use tinkerforge::{ip_connection::IpConnection, rgb_led_button_bricklet::*};
 
 const HOST: &str = "localhost";
 const PORT: u16 = 4223;
@@ -13,23 +10,22 @@ fn main() -> Result<(), Box<dyn Error>> {
     let rlb = RgbLedButtonBricklet::new(UID, &ipcon); // Create device object.
 
     ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
-    // Don't use device before ipcon is connected.
+                                          // Don't use device before ipcon is connected.
 
-     let button_state_changed_receiver = rlb.get_button_state_changed_callback_receiver();
+    let button_state_changed_receiver = rlb.get_button_state_changed_callback_receiver();
 
-        // Spawn thread to handle received callback messages. 
-        // This thread ends when the `rlb` object
-        // is dropped, so there is no need for manual cleanup.
-        thread::spawn(move || {
-            for button_state_changed in button_state_changed_receiver {           
-                		if button_state_changed == RGB_LED_BUTTON_BRICKLET_BUTTON_STATE_PRESSED { 
-			println!("State: Pressed");
-		}
-		else if button_state_changed == RGB_LED_BUTTON_BRICKLET_BUTTON_STATE_RELEASED { 
-			println!("State: Released");
-		}
+    // Spawn thread to handle received callback messages.
+    // This thread ends when the `rlb` object
+    // is dropped, so there is no need for manual cleanup.
+    thread::spawn(move || {
+        for button_state_changed in button_state_changed_receiver {
+            if button_state_changed == RGB_LED_BUTTON_BRICKLET_BUTTON_STATE_PRESSED {
+                println!("State: Pressed");
+            } else if button_state_changed == RGB_LED_BUTTON_BRICKLET_BUTTON_STATE_RELEASED {
+                println!("State: Released");
             }
-        });
+        }
+    });
 
     println!("Press enter to exit.");
     let mut _input = String::new();
