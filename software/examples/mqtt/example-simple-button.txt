@@ -2,5 +2,5 @@
 
 setup:
 	# Get current button state
-	subscribe to tinkerforge/response/rgb_led_button/XYZ/get_button_state
+	subscribe to tinkerforge/response/rgb_led_button_bricklet/XYZ/get_button_state
 	publish '' to tinkerforge/request/rgb_led_button_bricklet/XYZ/get_button_state 
