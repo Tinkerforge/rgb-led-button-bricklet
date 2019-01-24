@@ -1,0 +1,8 @@
+
+
+# Change XYZ to the UID of your RGB LED Button Bricklet
+
+setup:
+	# Get current button state
+	subscribe to tinkerforge/response/rgb_led_button/XYZ/get_button_state
+	publish '' to tinkerforge/request/rgb_led_button_bricklet/XYZ/get_button_state 

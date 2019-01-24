@@ -1,0 +1,8 @@
+
+
+# Change XYZ to the UID of your RGB LED Button Bricklet
+
+setup:
+	# Handle incoming button state changed callbacks
+	subscribe to tinkerforge/callback/rgb_led_button_bricklet/XYZ/button_state_changed
+	publish '{"register": true}' to tinkerforge/register/rgb_led_button_bricklet/XYZ/button_state_changed # Register button_state_changed callback

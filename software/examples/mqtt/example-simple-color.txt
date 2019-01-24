@@ -1,0 +1,7 @@
+
+
+# Change XYZ to the UID of your RGB LED Button Bricklet
+
+setup:
+	# Set light blue color
+	publish '{"red": 0, "green": 170, "blue": 234}' to tinkerforge/request/rgb_led_button_bricklet/XYZ/set_color 
