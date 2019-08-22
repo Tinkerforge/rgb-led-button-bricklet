@@ -37,7 +37,7 @@ int main(void) {
 	// Register button state changed callback to function cb_button_state_changed
 	rgb_led_button_register_callback(&rlb,
 	                                 RGB_LED_BUTTON_CALLBACK_BUTTON_STATE_CHANGED,
-	                                 (void *)cb_button_state_changed,
+	                                 (void (*)(void))cb_button_state_changed,
 	                                 NULL);
 
 	printf("Press key to exit\n");
