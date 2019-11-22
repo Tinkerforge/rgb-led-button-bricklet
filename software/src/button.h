@@ -41,7 +41,6 @@ typedef struct {
 	uint8_t blue;
 
 	uint8_t state;
-	uint8_t period;
 
 	bool calibration_read;
 	uint32_t calibration_page[EEPROM_PAGE_SIZE/sizeof(uint32_t)];
