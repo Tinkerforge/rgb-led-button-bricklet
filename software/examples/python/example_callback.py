@@ -25,5 +25,5 @@ if __name__ == "__main__":
     # Register button state changed callback to function cb_button_state_changed
     rlb.register_callback(rlb.CALLBACK_BUTTON_STATE_CHANGED, cb_button_state_changed)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()
