@@ -1,14 +1,9 @@
-
-
 #include "bindings/hal_common.h"
 #include "bindings/bricklet_rgb_led_button.h"
 
 #define UID "XYZ" // Change XYZ to the UID of your RGB LED Button Bricklet
 
 void check(int rc, const char* msg);
-
-
-
 
 TF_RGBLEDButton rlb;
 

@@ -1,13 +1,9 @@
-
-
 #include "bindings/hal_common.h"
 #include "bindings/bricklet_rgb_led_button.h"
 
 #define UID "XYZ" // Change XYZ to the UID of your RGB LED Button Bricklet
 
 void check(int rc, const char* msg);
-
-
 
 // Callback function for button state changed callback
 void button_state_changed_handler(TF_RGBLEDButton *device, uint8_t state,
@@ -20,7 +16,6 @@ void button_state_changed_handler(TF_RGBLEDButton *device, uint8_t state,
 		tf_hal_printf("State: Released\n");
 	}
 }
-
 
 TF_RGBLEDButton rlb;
 
