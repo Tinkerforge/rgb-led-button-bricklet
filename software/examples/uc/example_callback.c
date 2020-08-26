@@ -23,12 +23,10 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_rgb_led_button_create(&rlb, UID, hal), "create device object");
 
-
 	// Register button state changed callback to function button_state_changed_handler
 	tf_rgb_led_button_register_button_state_changed_callback(&rlb,
-	                                                        button_state_changed_handler,
-	                                                        NULL);
-
+	                                                         button_state_changed_handler,
+	                                                         NULL);
 }
 
 void example_loop(TF_HalContext *hal) {

@@ -11,10 +11,8 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_rgb_led_button_create(&rlb, UID, hal), "create device object");
 
-
 	// Set light blue color
 	check(tf_rgb_led_button_set_color(&rlb, 0, 170, 234), "call set_color");
-
 }
 
 void example_loop(TF_HalContext *hal) {

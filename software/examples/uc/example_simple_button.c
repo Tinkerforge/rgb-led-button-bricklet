@@ -11,7 +11,6 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_rgb_led_button_create(&rlb, UID, hal), "create device object");
 
-
 	// Get current button state
 	uint8_t state;
 	check(tf_rgb_led_button_get_button_state(&rlb, &state), "get button state");
@@ -21,7 +20,6 @@ void example_setup(TF_HalContext *hal) {
 	} else if(state == TF_RGB_LED_BUTTON_BUTTON_STATE_RELEASED) {
 		tf_hal_printf("State: Released\n");
 	}
-
 }
 
 void example_loop(TF_HalContext *hal) {
