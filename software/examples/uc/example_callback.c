@@ -5,9 +5,13 @@
 
 void check(int rc, const char* msg);
 
+void example_setup(TF_HalContext *hal);
+void example_loop(TF_HalContext *hal);
+
+
 // Callback function for button state changed callback
-void button_state_changed_handler(TF_RGBLEDButton *device, uint8_t state,
-                                  void *user_data) {
+static void button_state_changed_handler(TF_RGBLEDButton *device, uint8_t state,
+                                         void *user_data) {
 	(void)device; (void)user_data; // avoid unused parameter warning
 
 	if(state == TF_RGB_LED_BUTTON_BUTTON_STATE_PRESSED) {
@@ -17,7 +21,7 @@ void button_state_changed_handler(TF_RGBLEDButton *device, uint8_t state,
 	}
 }
 
-TF_RGBLEDButton rlb;
+static TF_RGBLEDButton rlb;
 
 void example_setup(TF_HalContext *hal) {
 	// Create device object
